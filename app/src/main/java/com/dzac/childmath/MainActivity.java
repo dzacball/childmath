@@ -42,10 +42,10 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPref.edit();
 
         if (!sharedPref.contains("autopin")) {
-            editor.putBoolean("autopin", true);
+            editor.putBoolean("autopin", false);
             editor.commit();
         }
-        Boolean autopin = sharedPref.getBoolean("autopin", true);
+        Boolean autopin = sharedPref.getBoolean("autopin", false);
 
         CheckBox autopin_cbox = (CheckBox) findViewById(R.id.autoPin);
         autopin_cbox.setChecked(autopin);
@@ -55,6 +55,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 editor.putBoolean("autopin", autopin_cbox.isChecked());
                 editor.commit();
+                if (autopin_cbox.isChecked()) {
+                    startLockTask();
+                }
             }
         });
 
