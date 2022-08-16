@@ -3,6 +3,14 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        debug {
+            storeFile file('/Users/laszlovigh/Documents/android_sign_keys/childmath.jks')
+            storePassword 'MasmilyenLampa2'
+            keyAlias 'key0'
+            keyPassword 'MasmilyenLampa2'
+        }
+    }
     compileSdk 32
 
     defaultConfig {

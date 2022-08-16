@@ -4,6 +4,8 @@
     package="com.dzac.childmath">
 
     <application
+        android:screenOrientation="portrait"
+        android:launchMode="singleTask"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
