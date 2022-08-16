@@ -17,7 +17,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -28,13 +30,14 @@ public class LesserGreater extends AppCompatActivity {
     public int total = 0;
     public int hit = 0;
     public int a_min = 0;
-    public int a_max = 99;
+    public int a_max = 100;
     public int b_min = 0;
     public int b_max = 99;
     public int minutes = 5;
     public Calendar startTime;
     public int colorsave;
     public boolean errorInQuest = false;
+    public int solution = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -201,8 +204,7 @@ public class LesserGreater extends AppCompatActivity {
             errorInQuest = false;
             disable();
             button.setTextColor(Color.GREEN);
-            TextView haha = (TextView) findViewById(R.id.haha1);
-            haha.setText(haha.getText() + " = " + button.getText());
+
 
 
             handler.postDelayed(new Runnable() {
@@ -260,74 +262,57 @@ public class LesserGreater extends AppCompatActivity {
 
         while(true) {
             int a = rand.nextInt(a_max - a_min + 1) + a_min;
-            int b = rand.nextInt(b_max - b_min + 1) + b_min;
-            if (!e.contains(a+b)) {
-                return a+b;
+            if (!e.contains(a)) {
+                return a;
             }
         }
     }
 
     private void newQuest() {
         Handler handler = new Handler();
+        CheckBox game_mode = (CheckBox) findViewById(R.id.simplecheck);
+        CheckBox lesser_mode = (CheckBox) findViewById(R.id.lesserMode);
 
+        if (game_mode.isChecked()) {
+            a_min = 0;
+            a_max = 1000;
+        }
         Random rand = new Random();
         int a = 0;
         int b = 0;
-        CheckBox game_mode = (CheckBox) findViewById(R.id.simplecheck);
-        CheckBox minus_mode = (CheckBox) findViewById(R.id.minuscheck);
-        if (game_mode.isChecked()) {
-            b_min = 1;
-            b_max = 5;
-        }
-        a = rand.nextInt(a_max - a_min + 1) + a_min;
-        b = rand.nextInt(b_max - b_min + 1) + b_min;
-        nyerobuttonid = rand.nextInt(2 - 0 + 1) + 0;
+        int c = 0;
+        ArrayList<Integer> eddigiek = new ArrayList<Integer>();
 
+        a = getRandNotEqual(eddigiek);
+        eddigiek.add(a);
+        b = getRandNotEqual(eddigiek);
+        eddigiek.add(b);
+        c = getRandNotEqual(eddigiek);
+        eddigiek.add(c);
+        Boolean bigger = true;
         TextView text = (TextView) findViewById(R.id.haha1);
-        int decide = rand.nextInt(25 - 0 + 1) + 0;
-        if (decide > 23) {
-            b = 0;
+        int decide = rand.nextInt(1 - 0 + 1) + 0;
+        if (!lesser_mode.isChecked()) {
+            decide = 1;
         }
-        int nyeroszam = 0;
-        if (minus_mode.isChecked() && ( (decide & 1) == 0 )) {
-            text.setText(String.valueOf(a) + " - " + String.valueOf(b));
-            nyeroszam = a - b;
+        if (decide == 0) {
+            bigger = false;
+            text.setText("<");
+            solution = Collections.min(Arrays.asList(a, b, c));
         } else {
-            text.setText(String.valueOf(a) + " + " + String.valueOf(b));
-            nyeroszam = a + b;
+            text.setText(">");
+            bigger = true;
+            solution = Collections.max(Arrays.asList(a, b, c));
         }
+        nyerobuttonid = eddigiek.indexOf(solution);
+
         TextView button1 = (TextView) findViewById(R.id.button1);
         TextView button2 = (TextView) findViewById(R.id.button2);
         TextView button3 = (TextView) findViewById(R.id.button3);
-        //button1.setBackgroundColor(Color.BLUE);
-        //button2.setBackgroundColor(Color.BLUE);
-        //button3.setBackgroundColor(Color.BLUE);
+        button1.setText(String.valueOf(a));
+        button2.setText(String.valueOf(b));
+        button3.setText(String.valueOf(c));
 
-        //button1.setTextColor(Color.WHITE);
-        //button2.setTextColor(Color.WHITE);
-        //button3.setTextColor(Color.WHITE);
-
-        TextView nyerobutton = (TextView) findViewById(ids[nyerobuttonid]);
-
-        ArrayList<Integer> eddigiek = new ArrayList<Integer>();
-
-        eddigiek.add(nyeroszam);
-        int tmp;
-        tmp = getRandNotEqual(eddigiek);
-        button1.setText(String.valueOf(tmp));
-        eddigiek.add(tmp);
-
-        tmp = getRandNotEqual(eddigiek);
-        button2.setText(String.valueOf(tmp));
-        eddigiek.add(tmp);
-
-        tmp = getRandNotEqual(eddigiek);
-        button3.setText(String.valueOf(tmp));
-        eddigiek.add(tmp);
-
-        nyerobutton.setText(String.valueOf(nyeroszam));
-
-        //text.setOnClickListener(this::onClick1);
         button1.setVisibility(View.GONE);
         button2.setVisibility(View.GONE);
         button3.setVisibility(View.GONE);
@@ -341,7 +326,7 @@ public class LesserGreater extends AppCompatActivity {
                 reEnable();
 
             }
-        }, 3000);
+        }, 500);
 
     }
 }

@@ -46,26 +46,21 @@
         android:id="@+id/simplecheck"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SimlpleMode"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="28dp"
+        android:text="Big Numbers"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <CheckBox
-        android:id="@+id/minuscheck"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="MinusMode"
-        app:layout_constraintBottom_toTopOf="@+id/simplecheck"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/remaining"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
+        android:layout_marginBottom="44dp"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -101,4 +96,12 @@
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/button2" />
+
+    <CheckBox
+        android:id="@+id/lesserMode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lesser"
+        app:layout_constraintBottom_toTopOf="@+id/simplecheck"
+        app:layout_constraintStart_toStartOf="@+id/simplecheck" />
 </androidx.constraintlayout.widget.ConstraintLayout>

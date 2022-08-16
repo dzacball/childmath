@@ -47,6 +47,7 @@
         android:id="@+id/simplecheck"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="28dp"
         android:text="SimlpleMode"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -55,6 +56,7 @@
         android:id="@+id/minuscheck"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
         android:text="MinusMode"
         app:layout_constraintBottom_toTopOf="@+id/simplecheck"
         app:layout_constraintStart_toStartOf="parent" />
@@ -63,10 +65,11 @@
         android:id="@+id/remaining"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
+        android:layout_marginBottom="44dp"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
