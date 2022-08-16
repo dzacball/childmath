@@ -64,6 +64,11 @@ public class LesserGreater extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+
+    }
+
     private void timeUpdater() {
         TextView remaining = (TextView) findViewById(R.id.remaining);
 
@@ -276,6 +281,9 @@ public class LesserGreater extends AppCompatActivity {
         if (game_mode.isChecked()) {
             a_min = 0;
             a_max = 1000;
+        } else {
+            a_min = 0;
+            a_max = 100;
         }
         Random rand = new Random();
         int a = 0;

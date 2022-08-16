@@ -62,6 +62,11 @@ public class PlusMinus extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+
+    }
+
     private void timeUpdater() {
         TextView remaining = (TextView) findViewById(R.id.remaining);
 
