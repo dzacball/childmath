@@ -200,7 +200,7 @@ public class PlusMinus extends AppCompatActivity {
         }
 
         if (v.getId() == ids[nyerobuttonid]) {
-            text.setText("IGEEEN!");
+            text.setText("YES!");
             if (!errorInQuest) {
                 hit++;
             }
@@ -241,7 +241,7 @@ public class PlusMinus extends AppCompatActivity {
 
         } else {
             disable();
-            text.setText("NEM NEM!");
+            text.setText("NO NO!!");
             errorInQuest = true;
 
             button.setTextColor(Color.RED);

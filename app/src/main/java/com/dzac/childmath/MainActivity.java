@@ -6,6 +6,7 @@ import androidx.core.util.LruCacheKt;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -60,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT);
         if (autopin_cbox.isChecked()) {
             startLockTask();
         }
