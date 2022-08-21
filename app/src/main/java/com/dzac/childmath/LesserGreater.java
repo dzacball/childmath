@@ -305,10 +305,10 @@ public class LesserGreater extends AppCompatActivity {
         }
         if (decide == 0) {
             bigger = false;
-            text.setText("<");
+            text.setText("⬇︎");
             solution = Collections.min(Arrays.asList(a, b, c));
         } else {
-            text.setText(">");
+            text.setText("⬆︎");
             bigger = true;
             solution = Collections.max(Arrays.asList(a, b, c));
         }

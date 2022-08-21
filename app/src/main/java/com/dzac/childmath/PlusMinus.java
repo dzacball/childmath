@@ -36,6 +36,7 @@ public class PlusMinus extends AppCompatActivity {
     public Calendar startTime;
     public int colorsave;
     public boolean errorInQuest = false;
+    public int n = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +48,10 @@ public class PlusMinus extends AppCompatActivity {
         text.setText("");
         TextView results = (TextView) findViewById(R.id.results);
         results.setOnLongClickListener(this::onLongClick);
+        TextView haha = (TextView) findViewById(R.id.haha1);
+        haha.setOnLongClickListener(this::onLongClick);
+        TextView remain = (TextView) findViewById(R.id.remaining);
+        remain.setOnLongClickListener(this::onLongClick);
         results.setText("0 / 0\n0%");
         TextView button1 = (TextView) findViewById(R.id.button1);
         TextView button2 = (TextView) findViewById(R.id.button2);
@@ -180,8 +185,29 @@ public class PlusMinus extends AppCompatActivity {
     }
 
     private Boolean onLongClick(View v) {
-        newQuest();
-        return true;
+        switch(v.getId()) {
+            case R.id.haha1:
+                if (n == 0) {
+                    n++;
+                    return true;
+                }
+                break;
+            case R.id.remaining:
+                if (n == 1) {
+                    n++;
+                    return true;
+                }
+                break;
+            case R.id.results:
+                if (n == 2) {
+                    newQuest();
+                    return true;
+                }
+                break;
+            default:
+                return false;
+        }
+        return false;
     }
 
 
@@ -193,6 +219,7 @@ public class PlusMinus extends AppCompatActivity {
         TextView button2 = (TextView) findViewById(R.id.button2);
         TextView button3 = (TextView) findViewById(R.id.button3);
 
+        n = 0;
         for (int i = 0; i < 3; i++) {
             if (v.getId() != ids[i]) {
                 ((TextView) findViewById(ids[i])).setAlpha((float)0.3);
@@ -275,6 +302,8 @@ public class PlusMinus extends AppCompatActivity {
     }
 
     private void newQuest() {
+        n = 0;
+
         Handler handler = new Handler();
 
         Random rand = new Random();
