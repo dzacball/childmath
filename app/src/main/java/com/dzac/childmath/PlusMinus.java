@@ -314,6 +314,9 @@ public class PlusMinus extends AppCompatActivity {
         if (game_mode.isChecked()) {
             b_min = 1;
             b_max = 5;
+        } else {
+            b_min = 1;
+            b_max = 99;
         }
         a = rand.nextInt(a_max - a_min + 1) + a_min;
         b = rand.nextInt(b_max - b_min + 1) + b_min;
