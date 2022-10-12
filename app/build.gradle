@@ -5,7 +5,7 @@ plugins {
 android {
     signingConfigs {
         debug {
-            storeFile file('/Users/laszlovigh/Documents/android_sign_keys/childmath.jks')
+            storeFile file('C:\\Users\\dzac\\Documents\\android_sign_keys\\childmath.jks')
             storePassword 'MasmilyenLampa2'
             keyAlias 'key0'
             keyPassword 'MasmilyenLampa2'
@@ -17,8 +17,8 @@ android {
         applicationId "com.dzac.childmath"
         minSdk 26
         targetSdk 32
-        versionCode 4
-        versionName "4.0"
+        versionCode 5
+        versionName "5.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

@@ -34,4 +34,13 @@
         android:text="Auto Pin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/buttonCountries"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Capital"
+        app:layout_constraintEnd_toStartOf="@+id/buttonLesserGreater"
+        app:layout_constraintStart_toEndOf="@+id/buttonPlusMinus"
+        app:layout_constraintTop_toTopOf="@+id/buttonPlusMinus" />
 </androidx.constraintlayout.widget.ConstraintLayout>

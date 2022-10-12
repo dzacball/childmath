@@ -275,7 +275,7 @@ public class LesserGreater extends AppCompatActivity {
 
     private void newQuest() {
         Handler handler = new Handler();
-        CheckBox game_mode = (CheckBox) findViewById(R.id.simplecheck);
+        CheckBox game_mode = (CheckBox) findViewById(R.id.afrikacheck);
         CheckBox lesser_mode = (CheckBox) findViewById(R.id.lesserMode);
 
         if (game_mode.isChecked()) {

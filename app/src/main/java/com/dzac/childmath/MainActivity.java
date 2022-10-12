@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Button btnPlusMinus = (Button)findViewById(R.id.buttonPlusMinus);
         Button btnLesserGreater = (Button)findViewById(R.id.buttonLesserGreater);
+        Button btnCountries = (Button)findViewById(R.id.buttonCountries);
 
         btnPlusMinus.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,6 +39,16 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        btnCountries.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, Capitals.class);
+                startActivity(intent);
+
+            }
+        });
+
 
         SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
