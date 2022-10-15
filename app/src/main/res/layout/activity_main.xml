@@ -43,4 +43,14 @@
         app:layout_constraintEnd_toStartOf="@+id/buttonLesserGreater"
         app:layout_constraintStart_toEndOf="@+id/buttonPlusMinus"
         app:layout_constraintTop_toTopOf="@+id/buttonPlusMinus" />
+
+    <Button
+        android:id="@+id/playAll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Play ALL"
+        app:layout_constraintEnd_toStartOf="@+id/buttonLesserGreater"
+        app:layout_constraintStart_toEndOf="@+id/buttonPlusMinus"
+        app:layout_constraintTop_toBottomOf="@+id/buttonCountries" />
 </androidx.constraintlayout.widget.ConstraintLayout>

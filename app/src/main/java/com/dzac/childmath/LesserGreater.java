@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -38,6 +39,7 @@ public class LesserGreater extends AppCompatActivity {
     public int colorsave;
     public boolean errorInQuest = false;
     public int solution = 0;
+    public boolean nextgame = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +47,10 @@ public class LesserGreater extends AppCompatActivity {
         setContentView(R.layout.activity_lesser_greater);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+        Bundle b = getIntent().getExtras();
+        int timeToPlay = -1; // or other values
+        if(b != null)
+            timeToPlay = b.getInt("timeToPlay");
         TextView text = (TextView) findViewById(R.id.winstate);
         text.setText("");
         TextView results = (TextView) findViewById(R.id.results);
@@ -57,11 +63,15 @@ public class LesserGreater extends AppCompatActivity {
         button1.setTypeface(null, Typeface.BOLD);
         button2.setTypeface(null, Typeface.BOLD);
         button3.setTypeface(null, Typeface.BOLD);
-        showTimeDialog();
+        if (timeToPlay == -1)
+            showTimeDialog();
+        else {
+            minutes = timeToPlay;
+            startTime = Calendar.getInstance();
+            timeUpdater();
+            nextgame = true;
+        }
         newQuest();
-
-
-
     }
 
     @Override
@@ -230,6 +240,18 @@ public class LesserGreater extends AppCompatActivity {
                         ((TextView) findViewById(R.id.haha1)).setVisibility(View.GONE);
                         ((TextView) findViewById(R.id.remaining)).setVisibility(View.GONE);
                         text.setText("END");
+                        if (nextgame)
+                            handler.postDelayed(new Runnable() {
+                              @Override
+                              public void run() {
+                                 Intent intent = new Intent(LesserGreater.this, Capitals.class);
+                                  Bundle b = new Bundle();
+                                  b.putInt("timeToPlay", minutes); //Your id
+                                  intent.putExtras(b); //Put your id to your next Intent
+                                 startActivity(intent);
+                                 finish();
+                              }
+                            }, 4000);
                     } else {
                         button.setTextColor(colorsave);
 

@@ -69,6 +69,11 @@ public class Capitals extends AppCompatActivity {
         setContentView(R.layout.activity_capitals);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+        Bundle b = getIntent().getExtras();
+        int timeToPlay = -1; // or other values
+        if(b != null)
+            timeToPlay = b.getInt("timeToPlay");
+
         try {
             europaMap = getCountries(R.raw.europa);
             asiaMap = getCountries(R.raw.asia);
@@ -118,7 +123,13 @@ public class Capitals extends AppCompatActivity {
         button1.setTypeface(null, Typeface.BOLD);
         button2.setTypeface(null, Typeface.BOLD);
         button3.setTypeface(null, Typeface.BOLD);
-        showTimeDialog();
+        if (timeToPlay == -1)
+            showTimeDialog();
+        else {
+            minutes = timeToPlay;
+            startTime = Calendar.getInstance();
+            timeUpdater();
+        }
         try {
             newQuest();
         } catch (IOException e) {
@@ -402,26 +413,17 @@ public class Capitals extends AppCompatActivity {
         Handler handler = new Handler();
         TextView text = (TextView) findViewById(R.id.haha1);
         TextView kontiText = (TextView) findViewById(R.id.kontiText);
-
-        CheckBox europeCheck = (CheckBox) findViewById(R.id.europacheck);
-        CheckBox asiaCheck = (CheckBox) findViewById(R.id.asiacheck);
-        CheckBox afrikaCheck = (CheckBox) findViewById(R.id.afrikacheck);
-
-
         Random rand = new Random();
-        ArrayList<String> eddigiek = new ArrayList<String>();
 
         idslist.add(R.id.button1);
         idslist.add(R.id.button2);
         idslist.add(R.id.button3);
 
-
-
         ArrayList<String> enableds = getEnableds();
 
         String valasztott_kont = enableds.get(rand.nextInt(enableds.size()));
 
-        eddigiek = getRandNotEqual(valasztott_kont);
+        ArrayList<String> eddigiek = getRandNotEqual(valasztott_kont);
 
         lastKonti = valasztott_kont;
         lastOrszag = eddigiek.get(0);

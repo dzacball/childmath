@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
         Button btnPlusMinus = (Button)findViewById(R.id.buttonPlusMinus);
         Button btnLesserGreater = (Button)findViewById(R.id.buttonLesserGreater);
         Button btnCountries = (Button)findViewById(R.id.buttonCountries);
+        Button btnPlayAll = (Button)findViewById(R.id.playAll);
 
         btnPlusMinus.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,6 +47,17 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, Capitals.class);
                 startActivity(intent);
 
+            }
+        });
+
+        btnPlayAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, PlusMinus.class);
+                Bundle b = new Bundle();
+                b.putInt("timeToPlay", 1); //Your id
+                intent.putExtras(b); //Put your id to your next Intent
+                startActivity(intent);
             }
         });
 

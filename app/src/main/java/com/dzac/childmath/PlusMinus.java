@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -36,6 +37,7 @@ public class PlusMinus extends AppCompatActivity {
     public int colorsave;
     public boolean errorInQuest = false;
     public int n = 0;
+    public boolean nextgame = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,10 @@ public class PlusMinus extends AppCompatActivity {
         setContentView(R.layout.activity_plus_minus);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+        Bundle b = getIntent().getExtras();
+        int timeToPlay = -1; // or other values
+        if(b != null)
+            timeToPlay = b.getInt("timeToPlay");
         TextView text = (TextView) findViewById(R.id.winstate);
         text.setText("");
         TextView results = (TextView) findViewById(R.id.results);
@@ -59,12 +65,10 @@ public class PlusMinus extends AppCompatActivity {
         button1.setTypeface(null, Typeface.BOLD);
         button2.setTypeface(null, Typeface.BOLD);
         button3.setTypeface(null, Typeface.BOLD);
+        if (timeToPlay != -1)
+            nextgame = true;
         showTimeDialog();
         newQuest();
-
-
-
-
     }
 
     @Override
@@ -256,6 +260,18 @@ public class PlusMinus extends AppCompatActivity {
                         ((TextView) findViewById(R.id.haha1)).setVisibility(View.GONE);
                         ((TextView) findViewById(R.id.remaining)).setVisibility(View.GONE);
                         text.setText("END");
+                        if (nextgame)
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Intent intent = new Intent(PlusMinus.this, LesserGreater.class);
+                                    Bundle b = new Bundle();
+                                    b.putInt("timeToPlay", minutes); //Your id
+                                    intent.putExtras(b); //Put your id to your next Intent
+                                    startActivity(intent);
+                                    finish();
+                                }
+                        }, 4000);
                     } else {
                         button.setTextColor(colorsave);
 
