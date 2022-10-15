@@ -260,7 +260,8 @@ public class PlusMinus extends AppCompatActivity {
                         ((TextView) findViewById(R.id.haha1)).setVisibility(View.GONE);
                         ((TextView) findViewById(R.id.remaining)).setVisibility(View.GONE);
                         text.setText("END");
-                        if (nextgame)
+                        if (nextgame) {
+                            text.setText("NEXT");
                             handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
@@ -271,7 +272,10 @@ public class PlusMinus extends AppCompatActivity {
                                     startActivity(intent);
                                     finish();
                                 }
-                        }, 4000);
+                            }, 4000);
+                        } else {
+                            text.setText("END");
+                        }
                     } else {
                         button.setTextColor(colorsave);
 

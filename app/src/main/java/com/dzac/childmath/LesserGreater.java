@@ -240,19 +240,22 @@ public class LesserGreater extends AppCompatActivity {
                         ((TextView) findViewById(R.id.haha1)).setVisibility(View.GONE);
                         ((TextView) findViewById(R.id.remaining)).setVisibility(View.GONE);
                         text.setText("END");
-                        if (nextgame)
+                        if (nextgame) {
+                            text.setText("NEXT");
                             handler.postDelayed(new Runnable() {
-                              @Override
-                              public void run() {
-                                 Intent intent = new Intent(LesserGreater.this, Capitals.class);
-                                  Bundle b = new Bundle();
-                                  b.putInt("timeToPlay", minutes); //Your id
-                                  intent.putExtras(b); //Put your id to your next Intent
-                                 startActivity(intent);
-                                 finish();
-                              }
+                                @Override
+                                public void run() {
+                                    Intent intent = new Intent(LesserGreater.this, Capitals.class);
+                                    Bundle b = new Bundle();
+                                    b.putInt("timeToPlay", minutes); //Your id
+                                    intent.putExtras(b); //Put your id to your next Intent
+                                    startActivity(intent);
+                                    finish();
+                                }
                             }, 4000);
-                    } else {
+                        } else {
+                            text.setText("END");
+                        }                    } else {
                         button.setTextColor(colorsave);
 
                         reEnable();
